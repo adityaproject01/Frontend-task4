@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yaga</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Dosis:wght@200..800&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="./style.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="d-lg-flex d-xl-flex d-xxl-flex d-md-flex container-fluid bg justify-content-md-center">
+        <div class="row justify-content-center align-items-center">
+            <div
+                class="col-sm-12 col-md-12 col-xl-8 col-xl-12 col-xxl-12 bg-white shadow-xxl rounded-3 d-flex justify-content-md-center justify-content-center">
+                <div class="row">
+                    <p class=" t2 text-center my-lg-2">Register Yoga class</p>
+
+                    <div
+                        class="col-sm-12  col-md-4  p-md-0 col-xxl-3  bg-white rounded-3 d-flex justify-content-sm-center align-items-center justify-content-center">
+                        <img class="posepic" src="./asset/yoga13.png" alt="posepic">
+                    </div>
+                    <div class="col-md-8 col-xxl-9">
+                        <div class="container-md container-xxl">
+                            <div class="row justify-content-center pt-lg-2 pt-xl-2 pt-xxl-2  ">
+                                <p class=" text1 text-center">Register Yoga class</p>
+                            </div>
+                            <form id="registerForm" onsubmit="handleForm(event)">
+
+                                <div class="row col-sm-12">
+
+                                    <div class="container">
+                                        <div class="row">
+                                            <div class="col-md-6 col-xxl-6">
+                                                <div class="form-group mt-4">
+                                                    <label>Full Name</label>
+                                                    <input type="text" class="form-control" id="name" name="textInput"
+                                                        oninput="this.value = this.value.replace(/[0-9]/g, '')">
+                                                    <span class="text-danger hiddenValue" id="nameError">Error
+                                                        message</span>
+                                                </div>
+
+                                            </div>
+                                            <div class="col-md-6 col-xxl-6">
+                                                <div class="form-group mt-4">
+                                                    <label>Phone Number</label>
+                                                    <input type="number" pattern="/^-?\d+\.?\d*$/"
+                                                        onKeyPress="if(this.value.length==10) return false;"
+                                                        class="form-control" id="phoneNumber">
+                                                    <span class="text-danger hiddenValue" id="phoneNumberError">Error
+                                                        message</span>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6 col-xxl-6">
+                                                <div class="form-group mt-4">
+                                                    <label>Enter your Email</label>
+                                                    <input type="email" id="email" class="form-control">
+                                                    <span class="text-danger hiddenValue" id="emailError">Error
+                                                        message</span>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 col-xxl-6">
+                                                <div class="form-group mt-4">
+                                                    <label>Select State</label>
+                                                    <select class="form-select" id="selectState">
+                                                        <option selected>Choose State</option>
+                                                        <option>Karnataka</option>
+                                                        <option>Andhra</option>
+                                                        <option>Kerala</option>
+                                                        <option>Tamil Nadu</option>
+                                                    </select>
+                                                    <span class="text-danger hiddenValue" id="selectStateError">Error
+                                                        message</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6 col-xxl-6">
+                                                <div class="form-group mt-4">
+                                                    <label>Enter your Password</label>
+                                                    <div class="input-group">
+                                                        <input type="password" id="upassword" class="form-control"
+                                                            pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                                                            title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters">
+                                                        <button class="btn btn-outline-secondary" type="button"
+                                                            onclick="togglePasswordVisibility('upassword')">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="16"
+                                                                height="16" fill="currentColor" class="bi bi-eye"
+                                                                viewBox="0 0 16 16">
+                                                                <path fill-rule="evenodd"
+                                                                    d="M14.78 7.78a1 1 0 0 1 0 1.41C13.12 10.79 10.66 12 8 12s-5.12-1.21-6.78-3.81a1 1 0 0 1 0-1.41C2.88 5.21 5.34 4 8 4s5.12 1.21 6.78 3.81zM8 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
+                                                            </svg>
+                                                        </button>
+                                                    </div>
+                                                    <span class="text-danger hiddenValue" id="passwordError">Error
+                                                        message</span>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-6 col-xxl-6">
+                                                <div class="form-group mt-4">
+                                                    <label for="confirmPassword">Confirm Password</label>
+                                                    <div class="input-group">
+                                                        <input type="password" class="form-control"
+                                                            id="confirmPassword">
+                                                        <button class="btn btn-outline-secondary" type="button"
+                                                            onclick="togglePasswordVisibility('confirmPassword')">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="16"
+                                                                height="16" fill="currentColor" class="bi bi-eye"
+                                                                viewBox="0 0 16 16">
+                                                                <path fill-rule="evenodd"
+                                                                    d="M14.78 7.78a1 1 0 0 1 0 1.41C13.12 10.79 10.66 12 8 12s-5.12-1.21-6.78-3.81a1 1 0 0 1 0-1.41C2.88 5.21 5.34 4 8 4s5.12 1.21 6.78 3.81zM8 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
+                                                            </svg>
+                                                        </button>
+                                                    </div>
+                                                    <span class="text-danger hiddenValue"
+                                                        id="confirmPasswordError">Error
+                                                        message</span>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6 col-xxl-6">
+                                                <div class="form-group mt-4">
+                                                    <label>Enter your age</label>
+
+                                                    <input type="number" pattern="/^-?\d+\.?\d*$/"
+                                                        onKeyPress="if(this.value.length==2) return false;" id="age"
+                                                        class="form-control" min=5>
+                                                    <span class="text-danger hiddenValue" id="ageError">Error
+                                                        message</span>
+
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 col-xxl-6">
+                                                <div class="form-group mt-4">
+                                                    <label>Enter your Date of Birth</label>
+
+                                                    <input type="date" id="dob" class="form-control" id="dob"
+                                                        min="1980-01-01">
+                                                </div>
+                                                <span class="text-danger hiddenValue" id="dobError">Error message</span>
+
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6 col-xxl-6">
+                                                <div class="form-group mt-4">
+                                                    <input type="file" class="form-control-file" id="fileupload"
+                                                        onchange="upload()">
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-6 col-xxl-6">
+                                                <div class="preview-image mt-4">
+                                                    <img id="preview" src="./asset/usericon.jpg" alt="Preview">
+
+                                                </div>
+                                                <div id="fileerr" class="mt-2 text-danger hiddenValue"></div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                                <div class="row w-50 d-lg-flex container-lg justify-content-lg-end pb-1">
+                                    <button class=" btn btn-primary" type="submit">Submit</button>
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+    <script>
+        function togglePasswordVisibility(inputId) {
+            let passwordField = document.getElementById(inputId);
+
+            if (passwordField.type === "password") {
+                passwordField.type = "text";
+            } else {
+                passwordField.type = "password";
+            }
+        }
+
+        function handleForm(event) {
+            event.preventDefault();
+
+            let isValid = true;
+
+            resetErrorMessages();
+            let formData = {
+                name: document.getElementById('name').value.trim(),
+                phoneNumber: document.getElementById('phoneNumber').value.trim(),
+                email: document.getElementById('email').value.trim(),
+                selectState: document.getElementById('selectState').value,
+                password: document.getElementById('upassword').value.trim(),
+                confirmPassword: document.getElementById('confirmPassword').value.trim(),
+                age: document.getElementById('age').value.trim(),
+                dob: document.getElementById('dob').value
+            };
+            console.log(formData)
+
+            if (formData.name === "") {
+                showError('nameError', 'Please enter your name.');
+                isValid = false;
+            }
+
+            if (formData.phoneNumber === "") {
+                showError('phoneNumberError', 'Please enter your phone number.');
+                isValid = false;
+            } else if (!validatePhoneNumber(formData.phoneNumber)) {
+                showError('phoneNumberError', 'Please enter a valid phone number.');
+                isValid = false;
+            }
+
+            if (formData.email === "") {
+                showError('emailError', 'Please enter your email.');
+                isValid = false;
+            } else if (!validateEmail(formData.email)) {
+                showError('emailError', 'Please enter a valid email address ending with @gmail.com.');
+                isValid = false;
+            }
+
+            if (formData.selectState === "Choose State") {
+                showError('selectStateError', 'Please select your state.');
+                isValid = false;
+            }
+
+            if (formData.password === "") {
+                showError('passwordError', 'Please enter your password.');
+                isValid = false;
+            } else if (formData.password.length < 8) {
+                showError('passwordError', 'Password must be at least 8 characters long.');
+                isValid = false;
+            }
+
+            if (formData.confirmPassword === "") {
+                showError('confirmPasswordError', 'Please confirm your password.');
+                isValid = false;
+            } else if (formData.password !== formData.confirmPassword) {
+                showError('confirmPasswordError', 'Passwords do not match.');
+                isValid = false;
+            }
+
+            if (formData.age === "") {
+                showError('ageError', 'Please enter your age.');
+                isValid = false;
+            } else if (parseInt(formData.age) < 18 || parseInt(formData.age) > 100) {
+                showError('ageError', 'Age must be between 18 and 100.');
+                isValid = false;
+            }
+
+            if (formData.dob === "") {
+                showError('dobError', 'Please enter your date of birth.');
+                isValid = false;
+            }
+
+            let fileInput = document.getElementById('fileupload');
+            if (fileInput.files.length === 0) {
+                showError('fileUploadError', 'Please upload a file.');
+                isValid = false;
+            } else {
+                let file = fileInput.files[0];
+                const allowedTypes = ['image/jpeg', 'image/png', 'image/gif'];
+                if (!allowedTypes.includes(file.type)) {
+                    showError('fileUploadError', 'Please upload an image file (jpeg, png, gif).');
+                    isValid = false;
+                }
+            }
+
+            if (isValid) {
+                alert('Form submitted successfully!');
+                document.getElementById('registerForm').reset();
+            } else {
+                console.log('Form contains validation errors.');
+
+            }
+        }
+
+        function showError(id, errorMessage) {
+            let errorElement = document.getElementById(id);
+            errorElement.textContent = errorMessage;
+            errorElement.classList.remove('hiddenValue'); // Ensure error message is visible
+        }
+
+        function resetErrorMessages() {
+            document.querySelectorAll('.text-danger').forEach(element => {
+                element.textContent = '';
+                element.classList.add('hiddenValue'); // Hide error message initially
+            });
+        }
+
+        function validatePhoneNumber(phoneNumber) {
+            return phoneNumber.match(/^\d{10}$/);
+        }
+
+        function validateEmail(email) {
+            return email.endsWith('@gmail.com');
+        }
+
+        function hideErrorMessage(errorId) {
+            document.getElementById(errorId).textContent = '';
+            document.getElementById(errorId).classList.add('hiddenValue'); // Hide error message
+        }
+
+        function togglePasswordVisibility(inputId) {
+            let input = document.getElementById(inputId);
+            input.type = input.type === 'password' ? 'text' : 'password';
+        }
+
+        function upload() {
+            let fileInput = document.getElementById('fileupload');
+            let file = fileInput.files[0];
+
+            if (file) {
+                let reader = new FileReader();
+                reader.onload = function (e) {
+                    document.getElementById('preview').src = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            } else {
+                document.getElementById('preview').src = './asset/usericon.jpg';
+            }
+        }
+
+        document.getElementById('name').addEventListener('input', function () {
+            hideErrorMessage('nameError');
+        });
+        document.getElementById('phoneNumber').addEventListener('input', function () {
+            hideErrorMessage('phoneNumberError');
+        });
+        document.getElementById('email').addEventListener('input', function () {
+            hideErrorMessage('emailError');
+        });
+        document.getElementById('selectState').addEventListener('input', function () {
+            hideErrorMessage('selectStateError');
+        });
+        document.getElementById('upassword').addEventListener('input', function () {
+            hideErrorMessage('passwordError');
+        });
+        document.getElementById('confirmPassword').addEventListener('input', function () {
+            hideErrorMessage('confirmPasswordError');
+        });
+        document.getElementById('age').addEventListener('input', function () {
+            hideErrorMessage('ageError');
+        });
+        document.getElementById('dob').addEventListener('input', function () {
+            hideErrorMessage('dobError');
+        });
+
+    </script>
+
+
+
+
+
+</body>
+
+</html>
