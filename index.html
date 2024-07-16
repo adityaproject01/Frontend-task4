@@ -58,7 +58,7 @@
                                                 <div class="form-group mt-4">
                                                     <label>Phone Number</label>
                                                     <input type="number" pattern="/^-?\d+\.?\d*$/"
-                                                        onKeyPress="if(this.value.length==10) return false;"
+                                                        onKeyPress="return validatePhoneNumberInput(event);" 
                                                         class="form-control" id="phoneNumber">
                                                     <span class="text-danger hiddenValue" id="phoneNumberError">Error
                                                         message</span>
@@ -142,7 +142,7 @@
                                                     <label>Enter your age</label>
 
                                                     <input type="number" pattern="/^-?\d+\.?\d*$/"
-                                                        onKeyPress="if(this.value.length==2) return false;" id="age"
+                                                    onKeyPress="return validateAgeInput(event);"  id="age"
                                                         class="form-control" min=5>
                                                     <span class="text-danger hiddenValue" id="ageError">Error
                                                         message</span>
@@ -197,6 +197,37 @@
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
     <script>
+
+        function validateAgeInput(event) {
+            const input = event.target;
+            const charCode = event.which ? event.which : event.keyCode;
+            if (input.value.length >= 2) {
+                event.preventDefault();
+                return false;
+            }
+            if (charCode === 101 || charCode === 69 || charCode === 43 || charCode === 45) {
+                event.preventDefault();
+                return false;
+            }
+
+            return true;
+        }
+
+        function validatePhoneNumberInput(event) {
+            const input = event.target;
+            const charCode = event.which ? event.which : event.keyCode;
+            if (input.value.length >= 10) {
+                event.preventDefault();
+                return false;
+            }
+            if (charCode < 48 || charCode > 57) {
+                event.preventDefault();
+                return false;
+            }
+
+            return true;
+        }
+
         function togglePasswordVisibility(inputId) {
             let passwordField = document.getElementById(inputId);
 
@@ -221,7 +252,8 @@
                 password: document.getElementById('upassword').value.trim(),
                 confirmPassword: document.getElementById('confirmPassword').value.trim(),
                 age: document.getElementById('age').value.trim(),
-                dob: document.getElementById('dob').value
+                dob: document.getElementById('dob').value,
+                preview : document.getElementById('preview').src
             };
             console.log(formData)
 
